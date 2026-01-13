@@ -13,12 +13,13 @@ export const dynamicParams = false;
 export const generateStaticParams = () =>
   getAllPosts().map((post) => ({ slug: post.slug }));
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
   params,
 }: {
-  params: { slug: string };
-}): Metadata => {
-  const post = getPostBySlug(params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> => {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) {
     return {
       title: "Post not found",
@@ -31,12 +32,13 @@ export const generateMetadata = ({
   };
 };
 
-export default function BlogPostPage({
+export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     notFound();
