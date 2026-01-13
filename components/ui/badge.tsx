@@ -1,22 +1,24 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+  "inline-flex items-center justify-center rounded-lg border px-2.5 py-1 text-[10px] font-black tracking-[0.15em] uppercase w-fit whitespace-nowrap shrink-0 transition-all duration-300 [&>svg]:size-3 gap-1.5 focus-visible:ring-1 focus-visible:ring-fuchsia-500/50",
   {
     variants: {
       variant: {
+        // Variante principale: Fucsia Neon
         default:
-          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+          "border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.1)] hover:border-fuchsia-500/50 hover:bg-fuchsia-500/20",
+        // Variante Cyan per contrasto
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+          "border-cyan-500/30 bg-cyan-500/10 text-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:border-cyan-500/50 hover:bg-cyan-500/20",
         destructive:
-          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "border-red-500/30 bg-red-500/10 text-red-400",
+        // Variante minimale ma definita
         outline:
-          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "border-border/40 bg-white/5 text-muted-foreground hover:border-white/20 hover:text-foreground hover:bg-white/10",
       },
     },
     defaultVariants: {

@@ -17,7 +17,7 @@ const posts: Post[] = [
       "A practical guide to moving from best effort events to reliable pipelines with outbox tables, CDC, and idempotent consumption.",
     date: "2025-03-10",
     readTime: "6 min",
-    tags: ["kafka", "events", "reliability", "distributed-systems"],
+    tags: ["kafka"],
     featured: true,
     body: [
       "Event driven systems fail in boring, predictable ways: duplicates, gaps, and out of order messages. The root cause is almost always the same, you write to the database and publish to Kafka in two separate steps. If either side fails, you lose consistency. The outbox pattern fixes this by persisting events in the same transaction as the state change, then shipping them asynchronously. Pair it with idempotent consumers and you get at least once delivery with deterministic outcomes.",
@@ -37,7 +37,7 @@ const posts: Post[] = [
       "How to keep async Rust fast and stable with bounded concurrency, timeouts, and memory discipline.",
     date: "2025-03-12",
     readTime: "6 min",
-    tags: ["rust", "tokio", "async", "performance"],
+    tags: ["rust"],
     body: [
       "Async does not mean infinite concurrency. The default pattern of spawning a task per request works until it does not, and then latency and memory explode together. In Tokio, backpressure is a design choice, not a magic feature. The goal is to keep the executor busy while bounding the number of in flight operations. This post focuses on practical patterns that stabilize throughput under load.",
       "Use semaphores to cap concurrency at the service boundary. A `tokio::sync::Semaphore` gives you a fixed number of permits. Acquire a permit at the start of a request and release it when the work is done. If you want fast failure under overload, use `try_acquire` and return `429` or a custom error before you allocate more work. This keeps queues short and protects tail latency.",
@@ -56,7 +56,7 @@ const posts: Post[] = [
       "A pragmatic checklist for upgrading Aria Automation 8.18 with predictable outcomes, from topology review to post upgrade validation.",
     date: "2025-03-14",
     readTime: "7 min",
-    tags: ["aria-automation", "vmware", "cloud", "platform-ops"],
+    tags: ["aria-automation"],
     body: [
       "Aria Automation upgrades are rarely about the version number alone. The risk is in the dependencies: identity, vCenter, vRO, cloud accounts, and the content your teams rely on. Treat 8.18 like a change to a platform, not a patch. The goal is to keep provisioning reliable and avoid silent regressions in cloud templates, policies, or extensibility actions. This post is a runbook that favors validation and repeatability over heroics.",
       "Start with topology. Single node deployments are fine for labs, but production usually needs a multi node cluster behind a load balancer. Confirm the virtual appliance sizing, disk headroom, and vSphere storage policies. If you run vRO embedded, validate the vRO version compatibility and content source sync. Externalize what you can, such as syslog and monitoring, so you can compare pre and post upgrade behavior.",
@@ -75,7 +75,7 @@ const posts: Post[] = [
       "How to run n8n reliably with queue mode, PostgreSQL, and a deployment model that survives traffic spikes.",
     date: "2025-03-16",
     readTime: "7 min",
-    tags: ["n8n", "automation", "workflows", "platform"],
+    tags: ["n8n"],
     body: [
       "n8n is deceptively simple when you start, but production usage exposes real system design questions: where executions run, how state is stored, and how to keep webhooks responsive under load. The core runtime is a Node.js process that reads workflows from a database and orchestrates node executions in memory. That is fine for small teams, but once you have many triggers and large payloads you need to design for throughput, failure, and cost.",
       "Choose the right execution mode early. Single process mode is easy but ties webhooks and executions to the same worker. Queue mode separates ingestion from execution using Redis and multiple workers, so you can scale compute without breaking webhooks. This also allows you to prioritize real time triggers while long running jobs execute in the background. Treat queue mode as the baseline for production, not an optimization.",
@@ -94,7 +94,7 @@ const posts: Post[] = [
       "How to move a hot table to a new schema without blocking writes, using backfill, change capture, validation, and a clean cutover.",
     date: "2025-03-01",
     readTime: "9 min",
-    tags: ["postgres", "replication", "migrations", "database"],
+    tags: ["postgres"],
     body: [
       "Zero downtime table rewrites in PostgreSQL are not about a single magic command, they are about keeping writes flowing while you move data to a new shape. The typical triggers are changing a column type, partitioning a hot table, moving to a new collation, or consolidating bloat. The challenge is that `ALTER TABLE` often takes an ACCESS EXCLUSIVE lock. The safer approach is to build a new table, backfill, mirror changes, validate, and cut over with a short write pause. This post outlines a production ready sequence.",
       "Start by checking the replication features you will rely on. If you are moving across clusters, set `wal_level = logical`, ensure `max_replication_slots` and `max_wal_senders` are large enough, and use the `pgoutput` plugin. For logical replication on a single cluster, the same settings apply but you can publish from the source database and subscribe from a loopback connection. Set a stable primary key, or configure `REPLICA IDENTITY FULL` on the source table so updates can be identified. Increase `wal_keep_size` to avoid slot lag discarding WAL during long backfills.",
@@ -114,7 +114,7 @@ const posts: Post[] = [
       "A technical deep dive into CPU throttling, memory OOM, QoS classes, and the metrics that make resource sizing predictable.",
     date: "2025-03-05",
     readTime: "9 min",
-    tags: ["kubernetes", "sre", "performance", "containers"],
+    tags: ["kubernetes"],
     body: [
       "Kubernetes resource tuning is often treated as a guess, but the scheduler and the kernel follow precise rules. Requests decide placement, limits decide cgroup enforcement, and both feed into autoscaling and eviction. If you do not understand those rules, you will chase OOMKills, CPU throttling, or random pod evictions. This post focuses on CPU and memory behavior under cgroups, how QoS classes are derived, and a practical strategy to pick values that keep latency stable without wasting nodes.",
       "CPU is compressible. A CPU request sets the relative share for scheduling, while the CPU limit enables CFS quota in cgroup v1 (`cpu.cfs_quota_us` and `cpu.cfs_period_us`) or `cpu.max` in cgroup v2. When a container hits its limit, it is throttled, not killed, which can stretch response times and increase tail latency. If your service is latency sensitive, consider omitting CPU limits and rely on requests plus HPA to control scale. Use `kubectl describe pod` to verify effective requests.",

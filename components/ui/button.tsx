@@ -1,32 +1,38 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-3.5 shrink-0 outline-none focus-visible:ring-1 focus-visible:ring-fuchsia-500/50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        // Il bottone principale: Pieno fucsia con glow
+        default:
+          "bg-fuchsia-500 text-white shadow-[0_0_20px_rgba(217,70,239,0.3)] hover:bg-fuchsia-600 hover:shadow-[0_0_25px_rgba(217,70,239,0.5)] hover:scale-[1.02] active:scale-[0.98]",
+        // Variante tech: Rossa/Arancio per errori
         destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500 hover:text-white shadow-[0_0_15px_rgba(239,68,68,0.1)]",
+        // Variante Glass: Bordo traslucido e sfondo sfocato
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border border-border/40 bg-background/40 backdrop-blur-sm text-foreground hover:border-fuchsia-500/40 hover:bg-fuchsia-500/5 hover:text-fuchsia-500",
+        // Variante Cyan per azioni secondarie
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-cyan-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:bg-cyan-600 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:scale-[1.02]",
+        // Variante minima: Solo testo che si illumina
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-transparent text-muted-foreground hover:text-fuchsia-500 hover:bg-fuchsia-500/5",
+        link:
+          "text-fuchsia-500 underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10",
+        default: "h-11 px-6",
+        sm: "h-9 rounded-xl px-4 text-[9px]",
+        lg: "h-14 rounded-[1.25rem] px-10 text-xs gap-3",
+        icon: "size-11 rounded-xl",
+        "icon-sm": "size-9 rounded-lg",
+        "icon-lg": "size-14 rounded-2xl",
       },
     },
     defaultVariants: {

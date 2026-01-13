@@ -1,164 +1,104 @@
 import Link from "next/link"
-import { ArrowUpRight, Layers, Sparkles, Zap } from "lucide-react"
-
-import { Badge } from "@/components/ui/badge"
+import { ArrowUpRight, Terminal, Globe, Cpu, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function HomeHero() {
   return (
-    <section className="relative overflow-hidden rounded-[32px] border border-border/60 bg-card/70 px-6 py-14 shadow-[0_25px_60px_-35px_rgba(217,70,239,0.45)] sm:px-10">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-20 -top-24 h-56 w-56 rounded-full bg-fuchsia-500/20 blur-3xl hero-float" />
-        <div className="absolute -bottom-24 left-10 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl hero-float-slow" />
-        <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(120deg,rgba(0,0,0,0.03)_0%,rgba(0,0,0,0.03)_30%,transparent_30%,transparent_100%)]" />
+    <section className="relative overflow-hidden rounded-[3rem] border border-border/40 bg-card/30 backdrop-blur-xl px-8 py-20 sm:px-14 lg:py-28">
+      {/* Sfondo Dinamico */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-500/30 to-transparent" />
+        <div className="absolute -left-20 top-[-10%] size-[500px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
+        <div className="absolute -right-20 bottom-[-10%] size-[500px] rounded-full bg-cyan-500/5 blur-[120px]" />
       </div>
 
-      <div className="relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 hero-fade-up">
-            <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-2xl border border-border/70 bg-background/80 text-sm font-semibold">
-                ig
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  itsgaet studio
-                </p>
-                <p className="text-base font-semibold">Notes and systems</p>
-              </div>
+      <div className="relative grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+        
+        {/* Sinistra: Main Content */}
+        <div className="flex flex-col gap-10">
+          <div className="flex items-center gap-4">
+            <div className="flex size-12 items-center justify-center rounded-2xl border border-fuchsia-500/20 bg-fuchsia-500/10 text-fuchsia-500 shadow-[0_0_15px_rgba(217,70,239,0.2)]">
+              <Terminal className="size-6" />
             </div>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1">
-                <span className="size-2 rounded-full bg-emerald-500" />
-                community open
-              </span>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-fuchsia-500">itsgaet studio // v2.0</p>
+              <p className="text-sm font-bold text-muted-foreground/60">Italy — Remote</p>
             </div>
           </div>
 
-          <Badge
-            variant="outline"
-            className="w-fit border-fuchsia-500/50 text-foreground hero-fade-up hero-delay-1"
-          >
-            <Sparkles className="size-3" />
-            open community blog
-          </Badge>
+          <h1 className="text-5xl font-black leading-[0.85] tracking-tighter sm:text-7xl lg:text-8xl">
+            BUILDING <br />
+            <span className="bg-gradient-to-r from-fuchsia-500 to-fuchsia-300 bg-clip-text text-transparent">SYSTEMS</span> <br />
+            NOT JUST UI.
+          </h1>
 
-          <div className="space-y-4 hero-fade-up hero-delay-2">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              I build digital products
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-rose-500 to-orange-400">
-                and publish the work in the open.
-              </span>
-            </h1>
-            <p className="max-w-xl text-lg text-muted-foreground">
-              A community blog where notes, templates, and the site itself are
-              open source. Fork it, improve it, and ship faster together.
-            </p>
-          </div>
+          <p className="max-w-xl text-xl leading-relaxed text-muted-foreground/80">
+            Un blog della community dove condivido <span className="text-foreground font-bold">note tecniche</span>, pattern modulari e workflow per chi costruisce prodotti digitali moderni.
+          </p>
 
-          <div className="flex flex-wrap gap-3 hero-fade-up hero-delay-3">
-            <Button size="lg" asChild>
-              <Link href="/blog">
-                Explore the blog <ArrowUpRight className="size-4" />
-              </Link>
+          <div className="flex flex-wrap gap-4">
+            <Button size="lg" asChild className="h-14 rounded-2xl bg-fuchsia-500 px-10 text-xs font-black uppercase tracking-widest hover:bg-fuchsia-600 hover:scale-105 transition-all shadow-[0_0_25px_rgba(217,70,239,0.4)]">
+              <Link href="/blog">EXPLORE ARCHIVE <ArrowUpRight className="ml-2 size-4" /></Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a
-                href="https://github.com/ItsGaet/itsgaet.github.io"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View the repo
-              </a>
+            <Button size="lg" variant="outline" asChild className="h-14 rounded-2xl border-border/40 bg-background/40 px-10 text-xs font-black uppercase tracking-widest backdrop-blur-sm hover:bg-white/5">
+              <a href="mailto:gaetanoabbaticchio8@gmail.com">GET IN TOUCH</a>
             </Button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground hero-fade-up hero-delay-4">
-            <span>Open content. Open workflows. Open repo.</span>
-            <a
-              className="inline-flex items-center gap-2 text-foreground transition hover:text-fuchsia-300"
-              href="mailto:gaetanoabbaticchio8@gmail.com"
-            >
-              Email me <ArrowUpRight className="size-4" />
-            </a>
-          </div>
-
-          <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-3 hero-fade-up hero-delay-4">
-            <div className="rounded-2xl border border-border/60 bg-background/70 p-4">
-              <p className="text-xs uppercase tracking-[0.2em]">Focus</p>
-              <p className="mt-2 text-base font-semibold text-foreground">
-                Design engineering
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Modular components and reliable UI.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-border/60 bg-background/70 p-4">
-              <p className="text-xs uppercase tracking-[0.2em]">Output</p>
-              <p className="mt-2 text-base font-semibold text-foreground">
-                Repeatable patterns
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Checklists ready for teams.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-border/60 bg-background/70 p-4">
-              <p className="text-xs uppercase tracking-[0.2em]">Cadence</p>
-              <p className="mt-2 text-base font-semibold text-foreground">
-                Steady momentum
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Technical notes every cycle.
-              </p>
-            </div>
+          <div className="flex items-center gap-8 border-t border-border/10 pt-10">
+            {[
+              { label: "Focus", val: "Design Eng" },
+              { label: "Status", val: "Available" },
+              { label: "Role", val: "Tech Lead" }
+            ].map((stat) => (
+              <div key={stat.label}>
+                <p className="text-[9px] font-black uppercase tracking-[0.3em] text-muted-foreground/40">{stat.label}</p>
+                <p className="text-sm font-bold text-foreground/80">{stat.val}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid gap-4 hero-fade-up hero-delay-2">
-          <div className="rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur">
-            <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              <span>Signal board</span>
-              <span className="font-mono">2025</span>
+        {/* Destra: Tech Display Card */}
+        <div className="relative lg:mt-4">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-border/40 bg-card/60 p-8 backdrop-blur-md">
+            <div className="flex items-center justify-between">
+              <div className="flex gap-1.5">
+                <div className="size-2 rounded-full bg-red-500/50" />
+                <div className="size-2 rounded-full bg-amber-500/50" />
+                <div className="size-2 rounded-full bg-emerald-500/50" />
+              </div>
+              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-widest">STK_VER: 2026.01</span>
             </div>
-            <h2 className="mt-4 text-2xl font-semibold">Operating stack</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              A collection of principles that guide every release: speed,
-              clarity, and reuse.
-            </p>
-            <div className="mt-6 grid gap-3">
-              <div className="rounded-2xl border border-border/60 bg-card/70 p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-base font-semibold">Design systems</p>
-                  <Layers className="size-4 text-fuchsia-500" />
+
+            <div className="mt-12 space-y-8">
+              {[
+                { icon: Globe, title: "Scalable Infra", desc: "Edge-first architectures." },
+                { icon: Cpu, title: "Modular Components", desc: "Radix + Tailwind primitives." },
+                { icon: Zap, title: "Fast Delivery", desc: "Built for speed and DX." }
+              ].map((item, i) => (
+                <div key={i} className="group/item flex items-start gap-5">
+                  <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-background/40 transition-all group-hover/item:border-fuchsia-500/50 group-hover/item:text-fuchsia-500">
+                    <item.icon className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold tracking-tight">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground/60">{item.desc}</p>
+                  </div>
                 </div>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Coherent libraries and clear guidelines.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-border/60 bg-card/70 p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-base font-semibold">Performance</p>
-                  <Zap className="size-4 text-amber-500" />
-                </div>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Lean builds and metrics under control.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-border/60 bg-card/70 p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-base font-semibold">Experiments</p>
-                  <Sparkles className="size-4 text-cyan-500" />
-                </div>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Rapid prototypes to validate ideas.
-                </p>
-              </div>
+              ))}
+            </div>
+
+            {/* Elemento decorativo "Code" */}
+            <div className="mt-12 rounded-xl bg-background/60 p-4 font-mono text-[10px] text-fuchsia-500/60">
+              <p>{`> Initializing systems...`}</p>
+              <p className="text-muted-foreground/30">{`> Component library loaded`}</p>
+              <p className="text-emerald-500/60">{`> Build status: Success`}</p>
             </div>
           </div>
-          <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-card/70 px-5 py-4 text-sm text-muted-foreground">
-            <span>Newsletter coming soon</span>
-            <span className="font-semibold text-foreground">Stay tuned</span>
-          </div>
+
+          {/* Cerchio decorativo esterno */}
+          <div className="absolute -bottom-6 -right-6 -z-10 size-32 rounded-full bg-cyan-500/10 blur-3xl" />
         </div>
       </div>
     </section>

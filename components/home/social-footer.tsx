@@ -1,121 +1,89 @@
-import {
-  ArrowUpRight,
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  Twitter,
-  Youtube,
-} from "lucide-react"
+import { ArrowUpRight, Github, Instagram, Linkedin, Twitter, Mail } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-const socialLinks = [
-  {
-    label: "GitHub",
-    handle: "@itsgaet",
-    href: "https://github.com/itsgaet",
-    icon: Github,
-  },
-  {
-    label: "LinkedIn",
-    handle: "/in/itsgaet",
-    href: "https://www.linkedin.com/in/itsgaet",
-    icon: Linkedin,
-  },
-  {
-    label: "Instagram",
-    handle: "@itsgaet",
-    href: "https://instagram.com/itsgaet",
-    icon: Instagram,
-  },
-  {
-    label: "X",
-    handle: "@itsgaet",
-    href: "https://x.com/itsgaet",
-    icon: Twitter,
-  },
-  {
-    label: "YouTube",
-    handle: "@itsgaet",
-    href: "https://youtube.com/@itsgaet",
-    icon: Youtube,
-  },
-  {
-    label: "Email",
-    handle: "gaetanoabbaticchio8@gmail.com",
-    href: "mailto:gaetanoabbaticchio8@gmail.com",
-    icon: Mail,
-  },
+const socials = [
+  { icon: Github, href: "https://github.com/itsgaet", label: "Github", color: "hover:text-[#2ea44f]" },
+  { icon: Linkedin, href: "https://linkedin.com/in/itsgaet", label: "LinkedIn", color: "hover:text-[#0077b5]" },
+  { icon: Twitter, href: "https://x.com/itsgaet", label: "Twitter", color: "hover:text-fuchsia-500" },
+  { icon: Instagram, href: "https://instagram.com/itsgaet", label: "Instagram", color: "hover:text-[#e4405f]" },
 ]
 
 export default function SocialFooter() {
+  const currentYear = 2026 // Come da istruzioni di sistema
+
   return (
-    <footer className="relative overflow-hidden rounded-[32px] border border-border/60 bg-card/70">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-0 h-56 w-56 rounded-full bg-fuchsia-500/15 blur-3xl hero-float" />
-        <div className="absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl hero-float-slow" />
-        <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
-        <div className="absolute -right-8 top-6 text-[120px] font-semibold tracking-tight text-white/5">
-          SOCIAL
-        </div>
-      </div>
-
-      <div className="relative grid gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6 hero-fade-up">
-          <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            <span className="size-2 rounded-full bg-emerald-500" />
-            Stay connected
+    <footer className="w-full space-y-10">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        
+        {/* Box Principale CTA */}
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-border/40 bg-card/30 backdrop-blur-md p-8 lg:col-span-8">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent" />
+            <div className="absolute -left-10 -bottom-10 size-64 rounded-full bg-fuchsia-500/5 blur-[100px]" />
           </div>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            A community blog, open across channels.
-          </h2>
-          <p className="max-w-xl text-base text-muted-foreground">
-            Short updates, deeper breakdowns, and open work in progress. Pick
-            the feed that fits your rhythm.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
+
+          <div className="flex h-full flex-col justify-between gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.4em] text-fuchsia-500">
+                <span className="h-1 w-1 rounded-full bg-fuchsia-500 animate-ping" />
+                Available for projects
+              </div>
+              <h2 className="max-w-md text-3xl font-black leading-tight tracking-tighter sm:text-5xl">
+                Let&apos;s build something <span className="text-muted-foreground/40 italic font-medium">calm</span> and useful.
+              </h2>
+            </div>
+            
+            <div className="flex flex-wrap gap-4">
+              <Button asChild className="h-12 rounded-2xl bg-fuchsia-500 px-6 text-[11px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(217,70,239,0.2)] hover:bg-fuchsia-600">
+                <a href="mailto:gaetanoabbaticchio8@gmail.com">
+                  GET IN TOUCH <ArrowUpRight className="ml-2 size-4" />
+                </a>
+              </Button>
+              <Button variant="outline" asChild className="h-12 rounded-2xl border-border/40 bg-background/40 px-6 text-[11px] font-black uppercase tracking-widest hover:bg-white/5">
+                <a href="https://github.com/itsgaet" target="_blank" rel="noreferrer">
+                  GITHUB PROFILE
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Griglia Social */}
+        <div className="grid grid-cols-2 gap-4 lg:col-span-4">
+          {socials.map((social) => (
             <a
-              className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-2 text-sm font-semibold text-foreground transition hover:border-fuchsia-500/40 hover:text-fuchsia-300"
-              href="mailto:gaetanoabbaticchio8@gmail.com"
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              className={`group relative flex flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-border/40 bg-card/20 p-6 transition-all duration-300 hover:border-fuchsia-500/30 hover:bg-fuchsia-500/5 ${social.color}`}
             >
-              Email me <ArrowUpRight className="size-4" />
+              <social.icon className="mb-3 size-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" />
+              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground group-hover:text-foreground">
+                {social.label}
+              </span>
             </a>
-            <span className="text-xs text-muted-foreground">
-              Fastest way to reach me.
-            </span>
-          </div>
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2">
-          {socialLinks.map((link, index) => {
-            const Icon = link.icon
-            const isExternal = link.href.startsWith("http")
-
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noreferrer" : undefined}
-                className="hero-fade-up group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-border/60 bg-background/40 px-4 py-4 transition hover:-translate-y-1 hover:border-foreground/30 hover:bg-background/60"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <span className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100 [background-image:radial-gradient(circle_at_top_left,rgba(217,70,239,0.25),transparent_60%)]" />
-                <span className="relative flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/80 text-foreground transition group-hover:border-fuchsia-500/40 group-hover:text-fuchsia-300">
-                  <Icon className="size-5" />
-                </span>
-                <div className="relative">
-                  <p className="text-sm font-semibold">{link.label}</p>
-                  <p className="text-xs text-muted-foreground">{link.handle}</p>
-                </div>
-              </a>
-            )
-          })}
+          ))}
         </div>
       </div>
 
-      <div className="relative flex flex-col gap-2 border-t border-border/60 px-6 pb-6 pt-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-        <span>(c) 2025 itsgaet.</span>
-        <span>Thanks for reading.</span>
+      {/* Info bar finale */}
+      <div className="flex flex-col items-center justify-between gap-6 border-t border-border/10 pt-10 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground/40 md:flex-row">
+        <div className="flex items-center gap-6">
+          <p>© {currentYear} ITSGAET</p>
+          <span className="h-4 w-px bg-border/40" />
+          <p className="text-fuchsia-500/50">Community Notes</p>
+        </div>
+        
+        <div className="flex items-center gap-8">
+          <p className="flex items-center gap-2">
+            <span className="size-1.5 rounded-full bg-emerald-500/50" />
+            Bisceglie, IT
+          </p>
+          <a href="#top" className="transition-colors hover:text-fuchsia-500">
+            Back to top ↑
+          </a>
+        </div>
       </div>
     </footer>
   )

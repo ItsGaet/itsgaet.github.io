@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import FloatingSidebar from "@/components/navigation/floating-sidebar";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,9 +29,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`dark scroll-smooth ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      {/* selection:bg-fuchsia-500/30 colora l'evidenziazione del testo */}
+      <body className="min-h-screen bg-background font-sans antialiased selection:bg-fuchsia-500/30 selection:text-fuchsia-200">
+        
+        {/* Overlay Texture (opzionale, rimuovilo se non vuoi caricare l'immagine esterna) */}
+        <div className="pointer-events-none fixed inset-0 z-[9999] opacity-[0.02] [background-image:url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+        <FloatingSidebar />
+        
+        <div className="relative pb-24 transition-all duration-500 md:pb-0">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
